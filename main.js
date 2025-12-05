@@ -22,10 +22,10 @@ btn.addEventListener("click", () => {
   count += 1;
   counterEl.textContent = count;
   try { localStorage.setItem("pop_count_v1", String(count)); } catch (e) {}
-  
+
   openMouth();
   popcat.classList.add("pop-anim");
-  
+
   const OPEN_TIME = 140;
   setTimeout(() => {
     closeMouth();
