@@ -1,4 +1,4 @@
-// main.js
+// main.js (unchanged except ensure counter update targets #counter)
 const popcat = document.querySelector("#popcat");
 const btn = document.querySelector("#btn");
 const counterEl = document.querySelector("#counter");
@@ -9,7 +9,6 @@ const closeMouthImg = "./images/GLE(CLOSE).png";
 const openMouthSound = new Audio("./sound/sound-open.mp3");
 const closeMouthSound = new Audio("./sound/sound-close.mp3");
 
-// load counter from localStorage
 let count = 0;
 try {
   const saved = localStorage.getItem("pop_count_v1");
@@ -17,7 +16,6 @@ try {
 } catch (e) { count = 0; }
 counterEl.textContent = count;
 
-// click handler
 btn.addEventListener("click", () => {
   count += 1;
   counterEl.textContent = count;
@@ -33,7 +31,6 @@ btn.addEventListener("click", () => {
   }, OPEN_TIME);
 });
 
-// prevent pinch-zoom on multi-touch (optional extra safeguard)
 window.addEventListener('touchstart', function (e) {
   if (e.touches && e.touches.length > 1) {
     e.preventDefault();
