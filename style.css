@@ -34,7 +34,7 @@ body{
 
 .card{
   width:min(720px, 94vw);
-  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,255,0.75));
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,255,0.9));
   border-radius:20px;
   padding:30px;
   box-shadow: 0 10px 30px rgba(20,18,40,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
@@ -49,6 +49,7 @@ body{
   margin:0;
   font-size:2rem;
   color:var(--text);
+  letter-spacing:0.4px;
 }
 .subtitle{
   margin:4px 0 0 0;
@@ -63,6 +64,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:6px;
 }
 
 #popcat{
@@ -73,8 +75,10 @@ body{
   transition: transform .12s ease, filter .18s ease;
   box-shadow: 0 10px 30px rgba(120, 80, 120, 0.06);
   border: 6px solid var(--glass);
+  background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.05));
 }
 
+/* sparkles */
 .sparkle{
   pointer-events:none;
   position:absolute;
@@ -82,19 +86,28 @@ body{
   height:18px;
   border-radius:50%;
   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.6) 40%, transparent 60%);
+  box-shadow: 0 4px 10px rgba(200,160,220,0.18);
+  transform:scale(.9);
+  opacity:0.95;
 }
-.s1{ left:8%; top:12%; background: linear-gradient(var(--accent1),#fff) }
-.s2{ right:10%; top:8%; width:14px;height:14px; background: linear-gradient(var(--accent2),#fff) }
-.s3{ right:18%; bottom:12%; width:12px;height:12px; background: linear-gradient(var(--accent3),#fff) }
+.s1{ left:8%; top:12%; background: linear-gradient(180deg,var(--accent1),#fff) }
+.s2{ right:10%; top:8%; width:14px;height:14px; background: linear-gradient(180deg,var(--accent2),#fff) }
+.s3{ right:18%; bottom:12%; width:12px;height:12px; background: linear-gradient(180deg,var(--accent3),#fff) }
 
+/* controls */
 .controls{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  gap:14px;
+  gap:10px;
+  margin-top:6px;
+  width:100%;
 }
 
+/* Button keep center */
 #btn{
-  width:170px;
+  width:200px;
+  max-width:72%;
   height:56px;
   border-radius:999px;
   border: none;
@@ -110,33 +123,41 @@ body{
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   user-select: none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 18px;
 }
 #btn:active{ transform:translateY(2px) scale(.98); box-shadow:none; }
 
+/* counter centered and more visible */
 .counter{
-  min-width:54px;
-  height:40px;
+  min-width:64px;
+  height:44px;
   border-radius:12px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
-  font-weight:800;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,255,0.9));
+  font-weight:900;
   color:var(--text);
-  box-shadow: 0 6px 16px rgba(80,60,100,0.06);
-  font-size:1.1rem;
-  padding:6px 12px;
+  box-shadow: 0 6px 20px rgba(80,60,100,0.06);
+  font-size:1.2rem;
+  padding:6px 14px;
+  margin-top:4px;
+  text-align:center;
 }
 
-/* prevent double-tap zoom on iOS by disabling selection and setting viewport; additional css */
-html, body, button { -webkit-touch-callout: none; -webkit-user-select: none; -ms-touch-action: manipulation; touch-action: manipulation; }
+/* footer */
+.footer small { color:var(--muted); margin-top:6px; }
 
+/* mobile tweaks */
 @media (max-width:480px){
   .card{ padding:20px; border-radius:16px; }
-  #btn{ width:140px; height:52px; font-size:0.98rem; }
+  #btn{ width:160px; height:52px; font-size:1rem; }
   #popcat{ border-radius:16px; }
   .sparkle{ display:none; }
-  .counter{ min-width:46px; height:36px; font-size:1rem; }
+  .counter{ min-width:52px; height:38px; font-size:1.05rem; }
 }
 
 .pop-anim{
@@ -144,3 +165,6 @@ html, body, button { -webkit-touch-callout: none; -webkit-user-select: none; -ms
   filter: saturate(1.06) brightness(1.01);
   transition: transform .08s, filter .12s;
 }
+
+/* prevent double-tap zoom on iOS by disabling selection and setting viewport; additional css */
+html, body, button { -webkit-touch-callout: none; -webkit-user-select: none; -ms-touch-action: manipulation; touch-action: manipulation; }
