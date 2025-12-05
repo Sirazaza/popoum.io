@@ -1,3 +1,4 @@
+/* style.css */
 :root{
   --bg1: #fff0f6;
   --bg2: #f0fbff;
@@ -15,10 +16,66 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: "Nunito", sans-serif;
-  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  background: radial-gradient(circle at top, #ffe4f4 0, #fff7fb 30%, #f0fbff 70%, #f6f7ff 100%);
   display:flex;
   align-items:center;
   justify-content:center;
+  -webkit-text-size-adjust:100%;
+  position:relative;
+  overflow:hidden;
+}
+
+/* animated pastel blobs */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  filter:blur(60px);
+  opacity:0.8;
+  z-index:-2;
+  pointer-events:none;
+}
+body::before{
+  background: radial-gradient(circle at 30% 30%, #ffd1ea 0, #ffb6d5 35%, transparent 70%);
+  top:-120px;
+  left:-120px;
+  animation: blobFloat1 18s ease-in-out infinite alternate;
+}
+body::after{
+  background: radial-gradient(circle at 30% 30%, #bfe9ff 0, #e4f3ff 40%, transparent 75%);
+  bottom:-160px;
+  right:-80px;
+  animation: blobFloat2 22s ease-in-out infinite alternate;
+}
+
+/* small glowing pastel orbs */
+.page-bg::before,
+.page-bg::after{
+  content:"";
+  position:fixed;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, #ffffff, #ffe0f5 55%, transparent 70%);
+  box-shadow:0 0 20px rgba(255,175,220,0.7);
+  opacity:0.9;
+  z-index:-1;
+  pointer-events:none;
+}
+.page-bg::before{
+  top:16%;
+  right:12%;
+  animation: orbDrift1 12s linear infinite;
+}
+.page-bg::after{
+  bottom:18%;
+  left:14%;
+  background:radial-gradient(circle at 30% 30%, #ffffff, #d7f1ff 55%, transparent 70%);
+  box-shadow:0 0 18px rgba(184,220,255,0.7);
+  animation: orbDrift2 15s linear infinite;
 }
 
 .page-bg {
@@ -32,10 +89,10 @@ body{
 
 .card{
   width:min(720px, 94vw);
-  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,255,0.75));
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,250,255,0.82));
   border-radius:20px;
   padding:30px;
-  box-shadow: 0 10px 30px rgba(20,18,40,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 18px 40px rgba(20,18,40,0.09), inset 0 1px 0 rgba(255,255,255,0.7);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -69,7 +126,7 @@ body{
   border-radius:22px;
   object-fit:cover;
   transition: transform .12s ease, filter .18s ease;
-  box-shadow: 0 10px 30px rgba(120, 80, 120, 0.06);
+  box-shadow: 0 10px 30px rgba(120, 80, 120, 0.10);
   border: 6px solid var(--glass);
 }
 
@@ -85,6 +142,12 @@ body{
 .s2{ right:10%; top:8%; width:14px;height:14px; background: linear-gradient(var(--accent2),#fff) }
 .s3{ right:18%; bottom:12%; width:12px;height:12px; background: linear-gradient(var(--accent3),#fff) }
 
+.controls{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
 #btn{
   width:170px;
   height:56px;
@@ -98,18 +161,63 @@ body{
   box-shadow: 0 8px 18px rgba(120,80,150,0.12), inset 0 -6px 18px rgba(255,255,255,0.2);
   color:#2b2130;
   transition: transform .12s, box-shadow .12s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 #btn:active{ transform:translateY(2px) scale(.98); box-shadow:none; }
+
+.counter{
+  min-width:54px;
+  height:40px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
+  font-weight:800;
+  color:var(--text);
+  box-shadow: 0 6px 16px rgba(80,60,100,0.06);
+  font-size:1.1rem;
+  padding:6px 12px;
+}
+
+/* prevent double-tap zoom on iOS by disabling selection and setting viewport; additional css */
+html, body, button { -webkit-touch-callout: none; -webkit-user-select: none; -ms-touch-action: manipulation; touch-action: manipulation; }
 
 @media (max-width:480px){
   .card{ padding:20px; border-radius:16px; }
   #btn{ width:140px; height:52px; font-size:0.98rem; }
   #popcat{ border-radius:16px; }
   .sparkle{ display:none; }
+  .counter{ min-width:46px; height:36px; font-size:1rem; }
 }
 
 .pop-anim{
   transform: scale(1.03);
   filter: saturate(1.06) brightness(1.01);
   transition: transform .08s, filter .12s;
+}
+
+/* animations */
+@keyframes blobFloat1{
+  0%{ transform:translate3d(0,0,0) scale(1); }
+  50%{ transform:translate3d(60px,40px,0) scale(1.05); }
+  100%{ transform:translate3d(40px,120px,0) scale(1.02); }
+}
+@keyframes blobFloat2{
+  0%{ transform:translate3d(0,0,0) scale(1.1); }
+  50%{ transform:translate3d(-40px,-60px,0) scale(1.03); }
+  100%{ transform:translate3d(-80px,20px,0) scale(1.08); }
+}
+@keyframes orbDrift1{
+  0%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(-18px,24px,0); }
+  100%{ transform:translate3d(10px,40px,0); }
+}
+@keyframes orbDrift2{
+  0%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(26px,-18px,0); }
+  100%{ transform:translate3d(-12px,-30px,0); }
 }
