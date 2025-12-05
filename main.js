@@ -7,20 +7,24 @@ const closeMouthImg = "./images/GLE(CLOSE).png";
 const openMouthSound = new Audio("./sound/sound-open.mp3");
 const closeMouthSound = new Audio("./sound/sound-close.mp3");
 
-// CLICK = เปิดปากแป๊บเดียว แล้วปิดกลับ
 btn.addEventListener("click", () => {
-    openMouth();
-    setTimeout(closeMouth, 120); // 120ms = เปิดแว๊บเดียว
+  openMouth();
+  popcat.classList.add("pop-anim");
+
+  setTimeout(() => {
+    closeMouth();
+    popcat.classList.remove("pop-anim");
+  }, 140);
 });
 
 function openMouth() {
-    popcat.src = openMouthImg;
-    openMouthSound.currentTime = 0;
-    openMouthSound.play();
+  popcat.src = openMouthImg;
+  openMouthSound.currentTime = 0;
+  openMouthSound.play();
 }
 
 function closeMouth() {
-    popcat.src = closeMouthImg;
-    closeMouthSound.currentTime = 0;
-    closeMouthSound.play();
+  popcat.src = closeMouthImg;
+  closeMouthSound.currentTime = 0;
+  closeMouthSound.play();
 }
