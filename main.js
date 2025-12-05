@@ -1,8 +1,8 @@
 const popcat = document.querySelector("#popcat");
 const btn = document.querySelector("#btn");
 
-const openMouthImg = "./images/GLE(CLOSE).png";
-const closeMouthImg = "./images/GLE(OPEN).png";
+const openMouthImg = "./images/GLE(OPEN).png";
+const closeMouthImg = "./images/GLE(CLOSE).png";
 
 const openMouthSound = new Audio("./sound/sound-open.mp3");
 const closeMouthSound = new Audio("./sound/sound-close.mp3");
