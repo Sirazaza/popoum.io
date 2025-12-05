@@ -221,3 +221,29 @@ html, body, button { -webkit-touch-callout: none; -webkit-user-select: none; -ms
   50%{ transform:translate3d(26px,-18px,0); }
   100%{ transform:translate3d(-12px,-30px,0); }
 }
+/* ==== เพิ่มท้ายไฟล์ style.css ==== */
+@media (max-width: 480px) {
+
+  /* ให้การ์ดเล็กลงไว้ในจอเดียว */
+  body{
+    align-items: flex-start;
+  }
+
+  .page-bg{
+    padding: 16px 10px 32px;
+  }
+
+  .card{
+    width: 100%;
+    max-width: 100%;
+    margin-top: 16px;
+    border-radius: 18px;
+  }
+
+  /* บีบความสูงรูปไม่ให้กินพื้นที่ทั้งจอ */
+  #popcat{
+    max-height: 60vh;
+    height: auto;
+  }
+}
+
